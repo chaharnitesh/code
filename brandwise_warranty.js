@@ -78,7 +78,7 @@ const Widget = Object.create({
     create(domain,srnumber,timestamp,signature) {
         const wdg = document.createElement("div")
         wdg.classList.add("brandwise-warranty");
-         if( srnumber === "" || timestamp === "" || signature === "" ){
+         if( srnumber === "" || timestamp === "" || signature === "" || domain === ""){
           
     	  wdg.innerHTML = `<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#warrantyform">
@@ -208,7 +208,7 @@ function warrantyFunction(e) {
     alert("The form was submitted");
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", "https://shycocare.ciphercode.co/api/v1/send-otp/", true);
+    xhttp.open("POST", `https://${domain}.ciphercode.co/api/v1/send-otp/`, true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     xhttp.send(JSON.stringify({ 'email': email,'timestamp':timestamp,'signature':signature,'serial_number':serial_number }));
@@ -245,7 +245,7 @@ function otpverificationFunction(e) {
     alert("The form was submitted");
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", "https://shycocare.ciphercode.co/api/v1/warranty/", true);
+    xhttp.open("POST", `https://${domain}.ciphercode.co/api/v1/warranty/`, true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     xhttp.send(JSON.stringify({ 'otp': otp ,'email':email,'name':name,'mobilenumber':mobile,
